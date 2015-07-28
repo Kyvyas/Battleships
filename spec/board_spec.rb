@@ -32,6 +32,11 @@ describe Board do
     expect(subject.fire("A5")).to eq("You have hit a boat")
   end
 
+  it "will raise error if fired on same place more than once" do
+    subject.place_ship ship
+    subject.fire("A5")
+    expect{subject.fire("A5")}.to raise_error "You have alread fired here"
+  end
 
   # it 'has a direction' do
   # 	expect(subject).to respond_to(:direction)

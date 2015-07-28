@@ -2,11 +2,8 @@ require_relative 'ship'
 
 class Board
 
-	attr_reader :ships
-	attr_reader :width
-  attr_reader :height
-  attr_reader :fired_locations, :location
-  
+  attr_reader :fired_locations, :location, :height, :width, :ships  
+
 	def initialize
 		@ships = []
 		@width = 10
@@ -20,15 +17,13 @@ class Board
 	end
 
 	def fire(location)
+		fail "You have alread fired here" if fired_locations.include?(location)
 		fired_locations << location
-		if hit?
-			return "You have hit a boat" 
-		else
-			"you have missed"
-		end
+		return "You have hit a boat" if hit?
+		"you have missed"
 	end
 
 	def hit?
-		fired_locations == ships.flatten
+		ships.flatten.include?(fired_locations.last)
 	end
 end
