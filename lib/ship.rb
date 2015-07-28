@@ -8,8 +8,8 @@ class Ship
 		@coordinates = []
 	end
 
-	def position(x)
-		@coordinates << x
+	def position(ship_position)
+		@coordinates << ship_position
 	end
 
 end
